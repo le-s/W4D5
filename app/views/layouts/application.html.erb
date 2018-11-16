@@ -8,7 +8,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <%if logged_in%>
+      <form class="" action="<%=session_url%>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" name="" value="Log out">
+      </form>
+    <%end%>
+  </header>
   <body>
     <%= yield %>
   </body>
