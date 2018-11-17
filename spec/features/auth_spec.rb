@@ -27,11 +27,7 @@ end
 feature 'logging in' do
 
   background :each do
-    visit new_user_url
-    fill_in 'Username', with: 'george'
-    fill_in 'Password', with: '123456'
-    click_button 'Create user!'
-    click_button 'Log out'
+    User.create(username: 'george', password: '123456')
     visit new_session_url
   end
 
@@ -39,7 +35,7 @@ feature 'logging in' do
     fill_in 'Username', with: 'george'
     fill_in 'Password', with: '123456'
     click_button 'Log In'
-    # save_and_open_page
+
     expect(page).to have_content('george')
   end
 

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -20,12 +32,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Session token validation' do
-    it "Should always have a session token" do
+    it "should always have a session token" do
       user = User.create!(username: 'Bob', password: 'password')
       expect(user.session_token).not_to eq(nil)
     end
 
-    it "Should change the session token when reset session token is called" do
+    it "should change the session token when reset session token is called" do
       user = User.create!(username: 'Bob', password: 'password')
       old_session_token = user.session_token
       user.reset_session_token!
